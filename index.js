@@ -21,10 +21,17 @@ document.addEventListener("DOMContentLoaded", () => {
         ball.style.left = `${ballX}px`;
         ball.style.top = `${ballY}px`;
 
+        if(ballX < paddle.offsetLeft + paddle.offsetWidth &&
+            ballY > paddle.offsetTop &&
+            ballY + ball.offsetHeight < paddle.offsetHeight + paddle.offsetTop
+        ){
+            dx *= -1;
+        }
+
         if(ballX > table.offsetWidth-ball.offsetWidth || ballX <= 0) dx *=-1
         if(ballY > table.offsetHeight-ball.offsetHeight || ballY <= 0) dy *=-1
     } 
-        ,1
+        ,10
     );
 
     let paddleY = 0;
@@ -32,6 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     document.addEventListener("keydown", (event)=>{
+        event.preventDefault();
         if(event.keyCode == 38 && paddleY > 0 ){
             
             paddleY += (-1)*dpY
