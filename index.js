@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let ball =  document.getElementById("ball");
     let table = document.getElementById("ping-pong-table");
+    let paddle = document.getElementById("paddle");
 
     let ballX = 50;
     let ballY = 50;
@@ -26,6 +27,20 @@ document.addEventListener("DOMContentLoaded", () => {
         ,1
     );
 
+    let paddleY = 0;
+    let dpY = 5;
+
+
+    document.addEventListener("keydown", (event)=>{
+        if(event.keyCode == 38 && paddleY > 0 ){
+            
+            paddleY += (-1)*dpY
+        }
+        else if(event.keyCode == 40 && paddleY < table.offsetHeight - paddle.offsetHeight - 10){
+            paddleY += dpY
+        }
+        paddle.style.top = `${paddleY}px`;
+    })
 
 } 
 );
