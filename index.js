@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if(ballX > table.offsetWidth-ball.offsetWidth || ballX <= 0) dx *=-1
         if(ballY > table.offsetHeight-ball.offsetHeight || ballY <= 0) dy *=-1
     } 
-        ,10
+        ,1
     );
 
     let paddleY = 0;
@@ -48,6 +48,21 @@ document.addEventListener("DOMContentLoaded", () => {
             paddleY += dpY
         }
         paddle.style.top = `${paddleY}px`;
+    })
+
+    document.addEventListener("mousemove", (event)=>{
+
+        if(event.clientX > table.offsetWidth/2 + table.offsetLeft) return;
+
+        let mouseDistanceFromTop = event.clientY;
+        let distanceOfTableFromTop = table.offsetTop;
+        let mousePointControl = mouseDistanceFromTop - distanceOfTableFromTop - paddle.offsetHeight/2;
+
+        paddleY = mousePointControl;
+        
+        if(paddleY <=0 || paddleY > table.offsetHeight - paddle.offsetHeight - 10) return;
+
+        paddle.style.top = `${paddleY}px`
     })
 
 } 
