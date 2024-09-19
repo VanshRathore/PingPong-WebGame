@@ -33,7 +33,8 @@ document.addEventListener("DOMContentLoaded", () => {
     } 
         ,1
     );
-
+     
+    
     let paddleY = 0;
     let dpY = 5;
 
@@ -44,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
             
             paddleY += (-1)*dpY
         }
-        else if(event.keyCode == 40 && paddleY < table.offsetHeight - paddle.offsetHeight - 10){
+        else if(event.keyCode == 40 && paddleY < table.offsetHeight - paddle.offsetHeight ){
             paddleY += dpY
         }
         paddle.style.top = `${paddleY}px`;
